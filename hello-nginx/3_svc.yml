@@ -8,6 +8,6 @@ spec:
     run: web
   ports:
     - protocol: TCP
-      port: 8080
+      port: 8888
       targetPort: 80
   type: LoadBalancer
