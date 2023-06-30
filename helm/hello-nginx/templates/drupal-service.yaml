@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: drupal-svc
+  labels:
+    app: drupal
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9999
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: drupal

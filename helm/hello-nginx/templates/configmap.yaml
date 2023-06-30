@@ -11,7 +11,7 @@ data:
 
 
         location / {
-            return 200 'whoop whoop';
+            proxy_pass http://drupal-svc:9999
         }
 
         error_page   500 502 503 504  /50x.html;
