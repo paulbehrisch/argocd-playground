@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "hello-nginx.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.nginx.service.type }}
   ports:
     - port: {{ .Values.nginx.service.port }}
       targetPort: http
