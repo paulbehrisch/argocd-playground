@@ -39,8 +39,6 @@ securityContext: {}
 service:
   type: LoadBalancer
   port: 8181
-  internalPort: 80
-  targetPort: 80
 
 ingress:
   enabled: false
