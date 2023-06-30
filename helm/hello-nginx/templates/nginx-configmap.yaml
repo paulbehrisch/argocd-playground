@@ -14,7 +14,7 @@ data:
         }
 
         location / {
-            proxy_pass http://drupal-svc:9999;
+            proxy_pass http://{{ .Values.drupal.service.name }}:{{ .Values.drupal.service.port }};
         }
 
         error_page   500 502 503 504  /50x.html;

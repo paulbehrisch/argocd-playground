@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "hello-nginx.fullname" . }}
+  name: {{  .Values.nginx.deplyomentName }}
   labels:
     {{- include "hello-nginx.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.nginx.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
