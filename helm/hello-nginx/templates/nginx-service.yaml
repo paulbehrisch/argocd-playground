@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ .Values.nginx.service.name }}
   labels:
-    {{- include "hello-nginx.labels" . | nindent 4 }}
+    app: nginx
 spec:
   type: {{ .Values.nginx.service.type }}
   ports:
