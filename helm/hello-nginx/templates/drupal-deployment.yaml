@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: drupal
+  name: {{ .Values.drupal.deploymentName }}
   labels:
     app: drupal
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.drupal.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
