@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{  .Values.nginx.deplyomentName }}
+  name: {{  .Values.nginx.deploymentName }}
   labels:
     {{- include "hello-nginx.labels" . | nindent 4 }}
 spec:
