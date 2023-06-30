@@ -11,7 +11,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "hello-nginx.selectorLabels" . | nindent 6 }}
+      app: nginx
   template:
     metadata:
       {{- with .Values.podAnnotations }}
