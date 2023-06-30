@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{  .Values.nginx.deploymentName }}
   labels:
+    app: nginx
     {{- include "hello-nginx.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
