@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ "Values.drupal.service.name"  }}
+  name: {{ .Values.drupal.service.name  }}
   labels:
     app: drupal
 spec:
-  type: ClusterIP
+  type: {{ .Values.drupal.service.type }}
   ports:
     - port: {{ .Values.drupal.service.port }}
       targetPort: http
