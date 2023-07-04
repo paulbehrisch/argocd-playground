@@ -20,7 +20,7 @@ spec:
           # Use secret in real usage. This is good enough for local testing.
         - name: MYSQL_ROOT_PASSWORD
           value: password
-        - name: MYSQL
+        - name: MYSQL_PASSWORD
           value: password
         - name: MYSQL_USER
           value: wordpress
