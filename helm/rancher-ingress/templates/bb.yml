@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bb
+  namespace: foobar
+spec:
+  containers:
+  - command: ["sleep"]
+    args: ["99999"]
+    image: busybox:latest
+    name: bb
