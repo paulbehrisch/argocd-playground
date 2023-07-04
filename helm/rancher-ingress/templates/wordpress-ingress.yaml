@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wordpress
+spec:
+  ingressClassName: traefik
+  rules:
+  -   host: "{{ .Values.wordpress.ingress.hostName }}"
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ .Values.wordpress.service.name }}
+              port:
+                number: {{ .Values.wordpress.service.port }}
