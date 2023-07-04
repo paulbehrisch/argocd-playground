@@ -29,67 +29,16 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.wordpress.image.repository }}:{{ .Values.wordpress.image.tag  }}"
-          imagePullPolicy: {{ .Values.wordpress.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ .Values.wordpress.deploymentName }}
-  labels:
-    app: wordpress
-spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.wordpress.replicaCount }}
-  {{- end }}
-  selector:
-    matchLabels:
-      app: wordpress
-  template:
-    metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      labels:
-        app: wordpress
-    spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "rancher-ingress.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      containers:
-        - name: {{ .Chart.Name }}
+          env:
+          # Use secret in real usage. This is good enough for local testing.
+          - name: WORDPRESS_DB_HOST
+            value: mysql-svc
+          - name: WORDPRESS_DB_USER
+            value: wordpress
+          - name: WORDPRESS_DB_PASSWORD
+            value: password
+          - name: WORDPRESS_DB_NAME
+            value: wordpress
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.wordpress.image.repository }}:{{ .Values.wordpress.image.tag  }}"
