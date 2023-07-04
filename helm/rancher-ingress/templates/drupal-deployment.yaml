@@ -10,7 +10,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "rancher-ingress.selectorLabels" . | nindent 6 }}
+      app: drupal
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "rancher-ingress.selectorLabels" . | nindent 8 }}
+        app: drupal
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
