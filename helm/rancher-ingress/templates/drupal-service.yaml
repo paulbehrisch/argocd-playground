@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.drupal.service.name  }}
+  labels:
+    app: drupal
+spec:
+  type: {{ .Values.drupal.service.type }}
+  ports:
+    - port: {{ .Values.drupal.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: drupal
