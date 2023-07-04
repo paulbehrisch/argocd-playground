@@ -2,6 +2,25 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+
+wordpress:
+  replicaCount: 1
+  deploymentName: wordpress-web
+  image:
+    repository: wordpress
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "latest"
+
+  service:
+    name: wordpress-svc
+    type: ClusterIP
+    port: 9998
+
+  ingress:
+     hostName: "wordpress.lame"
+
+
 drupal:
   replicaCount: 1
   deploymentName: drupal-web
