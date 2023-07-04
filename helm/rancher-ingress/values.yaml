@@ -20,6 +20,23 @@ wordpress:
   ingress:
      hostName: "wordpress.lame"
 
+mysql:
+  replicaCount: 1
+  deploymentName: mysql
+  image:
+    repository: mysql
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "5.6"
+
+  service:
+    name: mysql-svc
+    type: ClusterIP
+    port: 3306
+
+  ingress:
+     hostName: "wordpress.lame"
+
 
 drupal:
   replicaCount: 1
